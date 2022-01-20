@@ -4,8 +4,8 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 
-import { SigninInfo } from "./SigninInfo";
-import { SigninForm } from "./SigninForm";
+import { SignInForm } from "./SignInForm";
+import { FormInfo } from "../../components/Form/FomInfo";
 
 const signInSchema = yup.object().shape({
   name: yup.string().required("Campo obrigatório."),
@@ -17,7 +17,7 @@ interface ISignInData {
   password: string;
 }
 
-export const Signin = () => {
+export const SignIn = () => {
   const [loading, setLoading] = useState(false);
 
   const {
@@ -45,8 +45,8 @@ export const Signin = () => {
         flexDirection={["column", "column", "row-reverse", "row-reverse"]}
         alignItems="center"
       >
-        <SigninInfo />
-        <SigninForm
+        <FormInfo />
+        <SignInForm
           errors={errors}
           handleSignIn={handleSubmit(handleSignIn)}
           loading={loading}

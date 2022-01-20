@@ -19,8 +19,8 @@ type inputVariationOptions = {
 };
 
 const inputVariation: inputVariationOptions = {
-  error: "red.500",
-  default: "gray.200",
+  error: "red",
+  default: "gray.300",
   focus: "purple.800",
   filled: "green.500",
 };
@@ -48,7 +48,11 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 
   return (
     <FormControl isInvalid={!!error}>
-      {!!label && <FormLabel color="gray.400">{label}</FormLabel>}
+      {!!label && (
+        <FormLabel color="gray.400" mb="0">
+          {label}
+        </FormLabel>
+      )}
       <InputGroup flexDirection="column">
         {Icon && (
           <InputLeftElement
@@ -75,7 +79,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
           {...rest}
         />
         {!!error && (
-          <FormErrorMessage color="red.500">{error.message}</FormErrorMessage>
+          <FormErrorMessage color="red">{error.message}</FormErrorMessage>
         )}
       </InputGroup>
     </FormControl>

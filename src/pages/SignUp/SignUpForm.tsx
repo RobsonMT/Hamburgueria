@@ -1,35 +1,35 @@
-import { Button, Grid, Heading, Text, VStack } from "@chakra-ui/react";
+import { Button, Grid, Heading, HStack, Text, VStack } from "@chakra-ui/react";
 import { DeepMap, FieldError, UseFormRegister } from "react-hook-form";
 import { FieldValues } from "react-hook-form";
 import { FaEnvelope, FaLock } from "react-icons/fa";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Input } from "../../components/Form/input";
 
-interface ISignInData {
+interface ISignUpData {
   name: string;
+  email: string;
   password: string;
+  confirm_password?: string;
 }
 
-interface ISignInFormProps {
-  handleSignIn: () => void;
+interface ISignUpFormProps {
+  handleSignUp: () => void;
   errors: DeepMap<FieldValues, FieldError>;
-  register: UseFormRegister<ISignInData>;
+  register: UseFormRegister<ISignUpData>;
   loading: boolean;
 }
 
-export const SigninForm = ({
-  handleSignIn,
+export const SignUpForm = ({
+  handleSignUp,
   errors,
   register,
   loading,
-}: ISignInFormProps) => {
-  const history = useHistory();
-
+}: ISignUpFormProps) => {
   return (
     <Grid
-      onSubmit={handleSignIn}
+      onSubmit={handleSignUp}
       as="form"
-      padding="30px 10px"
+      padding="20px 10px"
       border="2px solid"
       borderColor="gray.100"
       borderRadius="5px"
@@ -39,8 +39,9 @@ export const SigninForm = ({
       w={["100%", "100%", "40%", "40%"]}
     >
       <Heading as="h2" size="lg">
-        Login
+        Cadastro
       </Heading>
+
       <VStack mt="5" spacing="2">
         <Input
           placeholder="Digite seu Nome"
@@ -51,6 +52,14 @@ export const SigninForm = ({
           {...register("name")}
         />
         <Input
+          type="email"
+          placeholder="Digite seu email"
+          label="Email"
+          error={errors.email}
+          icon={FaLock}
+          {...register("email")}
+        />
+        <Input
           type="password"
           placeholder="Digite sua senha"
           label="Senha"
@@ -58,8 +67,16 @@ export const SigninForm = ({
           icon={FaLock}
           {...register("password")}
         />
+        <Input
+          type="password"
+          placeholder="Confirme sua senha"
+          label="Confirmar Senha"
+          error={errors.confirm_password}
+          icon={FaLock}
+          {...register("confirm_password")}
+        />
       </VStack>
-      <VStack mt="7" spacing="2">
+      <VStack mt="6">
         <Button
           isLoading={loading}
           bg="green.500"
@@ -75,29 +92,19 @@ export const SigninForm = ({
             filter: "brightness(.8)",
           }}
           type="submit"
+          mb="1"
         >
           Logar
         </Button>
-        <Text color="gray.400" textAlign="center">
-          Crie sua conta para saborear muitas delícias e matar sua fome!
-        </Text>
-        <Button
-          bg="gray.100"
-          w="100%"
-          color="gray.300"
-          h="50px"
-          borderRadius="8px"
-          onClick={() => history.push("/signup")}
-          _hover={{
-            filter: "brightness(.9)",
-            transition: "filter .1s linear ",
-          }}
-          _active={{
-            filter: "brightness(1.1)",
-          }}
-        >
-          Cadastrar
-        </Button>
+
+        <HStack>
+          <Text fontSize="sm">Já possui uma conta?</Text>
+          <Link to="/">
+            <Text fontSize="sm" fontWeight="medium">
+              Retornar para o login.
+            </Text>
+          </Link>
+        </HStack>
       </VStack>
     </Grid>
   );
