@@ -1,7 +1,7 @@
-import { Center, Flex, Grid, HStack } from "@chakra-ui/react";
+import { Center, Flex, Grid, Text } from "@chakra-ui/react";
 import { useBreakpointValue } from "@chakra-ui/react";
-import { Heading, Text } from "@chakra-ui/react";
 import { FiShoppingBag } from "react-icons/fi";
+import { Logo } from "../Logo";
 import { Pointers } from "../Pointers";
 
 export const FormInfo = () => {
@@ -12,14 +12,7 @@ export const FormInfo = () => {
 
   return (
     <Grid w={["100%", "100%", "50%", "50%"]} gap="10px">
-      <HStack align="baseline" margin="30px 0 20px 0">
-        <Heading as="h1" fontSize="30px" fontWeight="700">
-          Burguer
-        </Heading>
-        <Text color="red" fontSize="20px" fontWeight="bold">
-          Kenzie
-        </Text>
-      </HStack>
+      <Logo margin="30px 0 20px 0" />
       <Flex
         alignItems="center"
         border="2px solid #E0E0E0"

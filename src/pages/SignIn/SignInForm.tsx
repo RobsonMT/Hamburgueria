@@ -71,9 +71,7 @@ export const SignInForm = ({
             filter: "brightness(1.2)",
             transition: "filter .1s linear ",
           }}
-          _active={{
-            filter: "brightness(.8)",
-          }}
+          _active={{ filter: "brightness(.8)" }}
           type="submit"
         >
           Logar
@@ -88,13 +86,9 @@ export const SignInForm = ({
           h="50px"
           borderRadius="8px"
           onClick={() => history.push("/signup")}
-          _hover={{
-            filter: "brightness(.9)",
-            transition: "filter .1s linear ",
-          }}
-          _active={{
-            filter: "brightness(1.1)",
-          }}
+          transition="filter .1s linear "
+          _hover={{ filter: "brightness(.9)" }}
+          _active={{ filter: "brightness(1.1)" }}
         >
           Cadastrar
         </Button>
