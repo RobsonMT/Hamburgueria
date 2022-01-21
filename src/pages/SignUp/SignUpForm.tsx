@@ -1,7 +1,8 @@
 import { Button, Grid, Heading, HStack, Text, VStack } from "@chakra-ui/react";
 import { DeepMap, FieldError, UseFormRegister } from "react-hook-form";
 import { FieldValues } from "react-hook-form";
-import { FaEnvelope, FaLock } from "react-icons/fa";
+import { FaEnvelope, FaLock, FaUserAlt } from "react-icons/fa";
+import { BsShieldFillCheck } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { Input } from "../../components/Form/input";
 
@@ -48,7 +49,7 @@ export const SignUpForm = ({
           type="text"
           label="Nome"
           error={errors.name}
-          icon={FaEnvelope}
+          icon={FaUserAlt}
           {...register("name")}
         />
         <Input
@@ -56,7 +57,7 @@ export const SignUpForm = ({
           placeholder="Digite seu email"
           label="Email"
           error={errors.email}
-          icon={FaLock}
+          icon={FaEnvelope}
           {...register("email")}
         />
         <Input
@@ -72,7 +73,7 @@ export const SignUpForm = ({
           placeholder="Confirme sua senha"
           label="Confirmar Senha"
           error={errors.confirm_password}
-          icon={FaLock}
+          icon={BsShieldFillCheck}
           {...register("confirm_password")}
         />
       </VStack>

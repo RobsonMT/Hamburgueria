@@ -63,7 +63,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
         )}
         <ChakraInput
           name={name}
-          bg="gray.100"
+          bg="gray.50"
           color={inputVariation[variation]}
           borderColor={inputVariation[variation]}
           onFocus={handleInputFocus}
