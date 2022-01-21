@@ -6,19 +6,25 @@ import { useState } from "react";
 
 import { SignInForm } from "./SignInForm";
 import { FormInfo } from "../../components/Form/FomInfo";
+import { useAuth } from "../../contexts/Auth";
 
 const signInSchema = yup.object().shape({
-  name: yup.string().required("Campo obrigatório."),
+  email: yup
+    .string()
+    .required("E-mail obrigatório. Ex: nome@email.com.")
+    .email("E-mail inválido"),
   password: yup.string().required("Campo obrigatório."),
 });
 
 interface ISignInData {
-  name: string;
+  email: string;
   password: string;
 }
 
 export const SignIn = () => {
   const [loading, setLoading] = useState(false);
+
+  const { signIn } = useAuth();
 
   const {
     formState: { errors },
@@ -30,6 +36,10 @@ export const SignIn = () => {
 
   const handleSignIn = (data: ISignInData) => {
     console.log(data);
+    setLoading(true);
+    signIn(data)
+      .then((_) => setLoading(false))
+      .catch((err) => setLoading(false));
   };
 
   return (

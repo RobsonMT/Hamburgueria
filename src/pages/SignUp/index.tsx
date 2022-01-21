@@ -6,6 +6,7 @@ import { useState } from "react";
 
 import { SignUpForm } from "./SignUpForm";
 import { FormInfo } from "../../components/Form/FomInfo";
+import { useAuth } from "../../contexts/Auth";
 
 const signUpSchema = yup.object().shape({
   name: yup.string().required("Nome obrigatório"),
@@ -30,6 +31,8 @@ interface ISignUpData {
 export const SignUp = () => {
   const [loading, setLoading] = useState(false);
 
+  const { signUp } = useAuth();
+
   const {
     formState: { errors },
     register,
@@ -39,7 +42,7 @@ export const SignUp = () => {
   });
 
   const handleSignUp = (data: ISignUpData) => {
-    console.log(data);
+    signUp(data);
   };
 
   return (

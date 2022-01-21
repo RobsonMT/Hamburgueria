@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { Input } from "../../components/Form/input";
 
 interface ISignInData {
-  name: string;
+  email: string;
   password: string;
 }
 
@@ -43,12 +43,12 @@ export const SignInForm = ({
       </Heading>
       <VStack mt="5" spacing="2">
         <Input
-          placeholder="Digite seu Nome"
-          type="text"
-          label="Nome"
-          error={errors.name}
+          placeholder="Digite seu email"
+          type="email"
+          label="Email"
+          error={errors.email}
           icon={FaEnvelope}
-          {...register("name")}
+          {...register("email")}
         />
         <Input
           type="password"
