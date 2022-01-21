@@ -1,6 +1,7 @@
 import { Center, Flex, Grid, Text } from "@chakra-ui/react";
 import { useBreakpointValue } from "@chakra-ui/react";
 import { FiShoppingBag } from "react-icons/fi";
+import { theme } from "../../styles/theme";
 import { Logo } from "../Logo";
 import { Pointers } from "../Pointers";
 
@@ -27,7 +28,7 @@ export const FormInfo = () => {
           borderRadius="5px"
           mr="10px"
         >
-          <FiShoppingBag size="30" color="#168821" />
+          <FiShoppingBag size="30" color={theme.colors.green[500]} />
         </Center>
         <Text fontSize="14px" color="gray.300">
           A vida é como um sanduíche, é preciso recheá-la com os{" "}

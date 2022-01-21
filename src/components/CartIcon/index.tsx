@@ -23,15 +23,16 @@ export const CartIcon = ({ amount }: IcartProps) => (
     {amount > 0 && (
       <Badge
         boxSize="7"
-        background="blue"
+        background="green.500"
         color="white"
-        borderRadius="50%"
-        padding="12px"
+        borderRadius="10px"
         display="inline-flex"
         justifyContent="center"
         alignItems="center"
         position="absolute"
         inset="-7px 20px 0px 12px"
+        fontSize="18px"
+        w="25px"
       >
         {amount}
       </Badge>

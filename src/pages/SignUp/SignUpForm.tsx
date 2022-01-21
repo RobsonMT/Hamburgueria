@@ -80,13 +80,13 @@ export const SignUpForm = ({
       <VStack mt="6">
         <Button
           isLoading={loading}
-          bg="green.500"
+          bg="green.300"
           color="white"
           w="100%"
           h="50px"
           borderRadius="8px"
           _hover={{
-            filter: "brightness(1.2)",
+            filter: "brightness(1.1)",
             transition: "filter .1s linear ",
           }}
           _active={{

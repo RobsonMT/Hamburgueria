@@ -25,7 +25,7 @@ export const Header = () => {
       justifyContent="space-between"
       alignItems="center"
       height={["60px", "75px"]}
-      paddingX={["10px", "60px"]}
+      paddingX={["10px", "40px"]}
     >
       {showSearchBox ? (
         <SearchBox closeSearchBox={closeSearchBox} />
@@ -33,7 +33,7 @@ export const Header = () => {
         <>
           <Logo />
 
-          <Flex alignItems="center" gap={["10px", "35px"]}>
+          <Flex alignItems="center" gap={["10px", "40px"]}>
             {isWideVersion ? (
               <SearchBox closeSearchBox={closeSearchBox} />
             ) : (

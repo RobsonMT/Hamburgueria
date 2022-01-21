@@ -19,11 +19,11 @@ export const SearchBox = ({ closeSearchBox }: ISearchBoxProps) => {
         <InputRightElement
           mt="1"
           mr="1.5"
-          bg="green.500"
+          bg="green.300"
           borderRadius="5px"
           transition="filter .1s linear "
           _hover={{
-            filter: "brightness(1.2)",
+            filter: "brightness(1.1)",
             cursor: "pointer",
           }}
           _active={{ filter: "brightness(.8)" }}
