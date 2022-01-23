@@ -2,13 +2,16 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "../styles/theme";
 import { ReactNode } from "react";
 import { AuthProvider } from "./Auth";
+import { CartProvider } from "./Cart";
 
 interface IProps {
   children: ReactNode;
 }
 
 export const Providers = ({ children }: IProps) => (
-  <AuthProvider>
-    <ChakraProvider theme={theme}>{children}</ChakraProvider>
-  </AuthProvider>
+  <ChakraProvider theme={theme}>
+    <AuthProvider>
+      <CartProvider>{children}</CartProvider>
+    </AuthProvider>
+  </ChakraProvider>
 );

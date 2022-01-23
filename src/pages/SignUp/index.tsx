@@ -15,6 +15,10 @@ const signUpSchema = yup.object().shape({
     .required("E-mail obrigatório")
     .email("Digite um email válido."),
   password: yup.string().required("Senha obrigatória"),
+  // .matches(
+  //   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/,
+  //   "The password must include letters, numbers and a special character"
+  // ),
   confirm_password: yup
     .string()
     .required("Confirmação de senha obrigatória")

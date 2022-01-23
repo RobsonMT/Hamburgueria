@@ -1,5 +1,7 @@
+import { useToast } from "@chakra-ui/react";
 import { createContext, useContext, ReactNode } from "react";
 import { useCallback, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { api } from "../../services/api";
 
 interface IProps {
@@ -50,6 +52,10 @@ const useAuth = () => {
 };
 
 const AuthProvider = ({ children }: IProps) => {
+  const history = useHistory();
+
+  const toast = useToast();
+
   const [data, setData] = useState<IAuthState>(() => {
     const user = localStorage.getItem("@Hamburgueria:user");
     const accessToken = localStorage.getItem("@Hamburgueria:accessToken");
@@ -73,19 +79,51 @@ const AuthProvider = ({ children }: IProps) => {
       localStorage.setItem("@Doit:user", JSON.stringify(user));
 
       setData({ accessToken, user });
+
+      history.push("/dashboard");
     } catch (err) {
-      console.log(err);
+      toast({
+        description: "Email ou senha iválido(s).",
+        status: "error",
+        duration: 2500,
+        isClosable: true,
+        position: "top",
+        variant: "left-accent",
+        containerStyle: {
+          color: "white",
+        },
+      });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const signUp = useCallback(async (data: ISignUpData) => {
     delete data.confirm_password;
     try {
-      const response = await api.post("/signup", data);
-      console.log(response);
-    } catch (err) {
-      console.log(err);
+      await api.post("/signup", data);
+      toast({
+        description: "Usuário registrado com sucesso.",
+        status: "success",
+        duration: 2500,
+        isClosable: true,
+        position: "top",
+      });
+
+      history.push("/");
+    } catch (error) {
+      toast({
+        description: "Email já registrado.",
+        status: "error",
+        duration: 2500,
+        isClosable: true,
+        position: "top",
+        variant: "left-accent",
+        containerStyle: {
+          color: "white",
+        },
+      });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const signOut = useCallback(() => {

@@ -2,7 +2,8 @@ import { Flex, IconButton, useBreakpointValue } from "@chakra-ui/react";
 import { useState } from "react";
 import { FaSearch, FaSignOutAlt } from "react-icons/fa";
 import { theme } from "../../styles/theme";
-import { CartIcon } from "../CartIcon";
+import { CartIcon } from "../Cart/CartIcon";
+
 import { SearchBox } from "../Form/SearchBox";
 import { Logo } from "../Logo";
 
