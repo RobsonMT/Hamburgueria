@@ -1,13 +1,15 @@
 import { Flex, IconButton, useBreakpointValue } from "@chakra-ui/react";
-import { useState } from "react";
 import { FaSearch, FaSignOutAlt } from "react-icons/fa";
 import { theme } from "../../styles/theme";
-import { CartIcon } from "../Cart/CartIcon";
-
+import { CartModal } from "../Cart/CartModal";
 import { SearchBox } from "../Form/SearchBox";
+import { useCart } from "../../contexts/Cart";
+import { useEffect, useState } from "react";
 import { Logo } from "../Logo";
 
 export const Header = () => {
+  const { cart, loadCart } = useCart();
+
   const [showSearchBox, setShowSearchBox] = useState(false);
 
   const openSearchBox = () => setShowSearchBox(true);
@@ -18,6 +20,11 @@ export const Header = () => {
     base: false,
     md: true,
   });
+
+  useEffect(() => {
+    loadCart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Flex
@@ -52,7 +59,7 @@ export const Header = () => {
               />
             )}
 
-            <CartIcon amount={0} />
+            <CartModal cart={cart} />
 
             <IconButton
               bg="transparent"

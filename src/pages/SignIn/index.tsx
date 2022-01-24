@@ -3,10 +3,10 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-
 import { SignInForm } from "./SignInForm";
 import { FormInfo } from "../../components/Form/FomInfo";
 import { useAuth } from "../../contexts/Auth";
+import { ISignInData } from "../../types/User";
 
 const signInSchema = yup.object().shape({
   email: yup
@@ -15,11 +15,6 @@ const signInSchema = yup.object().shape({
     .email("E-mail inválido"),
   password: yup.string().required("Campo obrigatório."),
 });
-
-interface ISignInData {
-  email: string;
-  password: string;
-}
 
 export const SignIn = () => {
   const [loading, setLoading] = useState(false);
@@ -35,11 +30,10 @@ export const SignIn = () => {
   });
 
   const handleSignIn = (data: ISignInData) => {
-    console.log(data);
     setLoading(true);
     signIn(data)
       .then((_) => setLoading(false))
-      .catch((err) => setLoading(false));
+      .catch((error) => setLoading(false));
   };
 
   return (

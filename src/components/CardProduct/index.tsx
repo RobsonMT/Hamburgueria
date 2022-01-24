@@ -1,20 +1,17 @@
 import { GridItem, Heading, Image, Text, VStack } from "@chakra-ui/react";
 import { Button, Flex } from "@chakra-ui/react";
+import { useCart } from "../../contexts/Cart";
+import { IProductInStock } from "../../types/Product";
 import { formatPrice } from "../../utils/Format";
 
-interface IProduct {
-  name: string;
-  category: string;
-  price: number;
-  image: string;
+interface ICardProductProps {
+  product: IProductInStock;
 }
 
-interface ICardProps {
-  product: IProduct;
-}
-
-export const Card = ({ product }: ICardProps) => {
+export const CardProduct = ({ product }: ICardProductProps) => {
   const $productPrice = formatPrice(product.price);
+
+  const { addToCart } = useCart();
 
   return (
     <GridItem
@@ -34,12 +31,7 @@ export const Card = ({ product }: ICardProps) => {
       }}
     >
       <Flex height="50%" background="white">
-        <Image
-          // webkit-box-reflect="below 0 linear-gradient (transparent, rgba(0,0,0,0.8))"
-          src={product.image}
-          objectFit="contain"
-          width="100%"
-        />
+        <Image src={product.image} objectFit="contain" width="100%" />
       </Flex>
       <Flex flex="1" padding="15px 10px">
         <VStack alignItems="start" justifyContent="space-around">
@@ -55,6 +47,7 @@ export const Card = ({ product }: ICardProps) => {
             color="gray.0"
             height="35px"
             _hover={{ filter: "brightness(1.1)" }}
+            onClick={() => addToCart(product)}
           >
             Adicionar
           </Button>

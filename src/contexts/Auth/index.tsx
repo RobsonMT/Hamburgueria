@@ -1,34 +1,17 @@
-import { useToast } from "@chakra-ui/react";
+import { ISignInData, ISignUpData, IUser } from "../../types/User";
 import { createContext, useContext, ReactNode } from "react";
 import { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { api } from "../../services/api";
+import { toast } from "react-toastify";
 
-interface IProps {
+interface IChildren {
   children: ReactNode;
-}
-
-interface IUser {
-  id: number;
-  name: string;
-  email: string;
 }
 
 interface IAuthState {
   user: IUser;
   accessToken: string;
-}
-
-interface ISignInData {
-  email: string;
-  password: string;
-}
-
-interface ISignUpData {
-  name: string;
-  email: string;
-  password: string;
-  confirm_password?: string;
 }
 
 interface IAuthContext {
@@ -51,10 +34,8 @@ const useAuth = () => {
   return context;
 };
 
-const AuthProvider = ({ children }: IProps) => {
+const AuthProvider = ({ children }: IChildren) => {
   const history = useHistory();
-
-  const toast = useToast();
 
   const [data, setData] = useState<IAuthState>(() => {
     const user = localStorage.getItem("@Hamburgueria:user");
@@ -67,7 +48,7 @@ const AuthProvider = ({ children }: IProps) => {
     return {} as IAuthState;
   });
 
-  const signIn = useCallback(async (data: ISignInData) => {
+  const signIn = async (data: ISignInData) => {
     const { email, password } = data;
 
     try {
@@ -75,60 +56,38 @@ const AuthProvider = ({ children }: IProps) => {
 
       const { accessToken, user } = response.data;
 
-      localStorage.setItem("@Doit:accessToken", accessToken);
-      localStorage.setItem("@Doit:user", JSON.stringify(user));
+      localStorage.setItem("@Hamburgueria:accessToken", accessToken);
+      localStorage.setItem("@Hamburgueria:user", JSON.stringify(user));
+
+      toast.success(`Bem-vindo de volta, ${user.name}!`);
 
       setData({ accessToken, user });
 
       history.push("/dashboard");
-    } catch (err) {
-      toast({
-        description: "Email ou senha iválido(s).",
-        status: "error",
-        duration: 2500,
-        isClosable: true,
-        position: "top",
-        variant: "left-accent",
-        containerStyle: {
-          color: "white",
-        },
-      });
+    } catch (error) {
+      toast.error("Email ou senha iválido(s).");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  };
 
-  const signUp = useCallback(async (data: ISignUpData) => {
+  const signUp = async (data: ISignUpData) => {
     delete data.confirm_password;
+
     try {
       await api.post("/signup", data);
-      toast({
-        description: "Usuário registrado com sucesso.",
-        status: "success",
-        duration: 2500,
-        isClosable: true,
-        position: "top",
-      });
+
+      toast.success("Usuário registrado com sucesso.");
 
       history.push("/");
     } catch (error) {
-      toast({
-        description: "Email já registrado.",
-        status: "error",
-        duration: 2500,
-        isClosable: true,
-        position: "top",
-        variant: "left-accent",
-        containerStyle: {
-          color: "white",
-        },
-      });
+      toast.error("Email já registrado.");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  };
 
   const signOut = useCallback(() => {
-    localStorage.removeItem("@Doit:accessToken");
-    localStorage.removeItem("@Doit:user");
+    localStorage.removeItem("@Hamburgueria:accessToken");
+    localStorage.removeItem("@Hamburgueria:user");
+
+    toast.warning("Usuário desconectado.");
 
     setData({} as IAuthState);
   }, []);

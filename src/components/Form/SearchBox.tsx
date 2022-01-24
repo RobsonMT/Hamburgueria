@@ -1,7 +1,6 @@
 import { FormControl, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { FaSearch } from "react-icons/fa";
 import { theme } from "../../styles/theme";
-
 import { Input } from "./input";
 
 interface ISearchBoxProps {

@@ -1,23 +1,16 @@
 import { Flex } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { Card } from "../../components/Card";
-import { CartModal } from "../../components/Cart/CartModal";
+import { CardProduct } from "../../components/CardProduct";
 import { Header } from "../../components/Header";
 import { api } from "../../services/api";
-
-interface IProduct {
-  name: string;
-  category: string;
-  price: number;
-  image: string;
-}
+import { IProductInStock } from "../../types/Product";
 
 export const Dashboard = () => {
-  const [store, setStore] = useState<IProduct[]>([]);
+  const [products, setProducts] = useState<IProductInStock[]>([]);
 
   const loadProducts = async () => {
     const response = await api.get("/products");
-    setStore(response.data);
+    setProducts(response.data);
   };
 
   useEffect(() => {
@@ -36,11 +29,10 @@ export const Dashboard = () => {
         paddingX={["10px", "40px"]}
         marginY="10"
       >
-        {store.map((product, index) => (
-          <Card key={index} product={product} />
+        {products.map((product, index) => (
+          <CardProduct key={index} product={product} />
         ))}
       </Flex>
-      <CartModal />
     </Flex>
   );
 };
