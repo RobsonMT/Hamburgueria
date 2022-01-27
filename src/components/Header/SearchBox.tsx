@@ -1,13 +1,30 @@
 import { FormControl, InputGroup, InputRightElement } from "@chakra-ui/react";
+import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { theme } from "../../styles/theme";
-import { Input } from "./input";
+import { Input } from "../Form/input";
 
 interface ISearchBoxProps {
   closeSearchBox(): void;
+  filterProducts(inputValue: string): void;
 }
 
-export const SearchBox = ({ closeSearchBox }: ISearchBoxProps) => {
+export const SearchBox = ({
+  closeSearchBox,
+  filterProducts,
+}: ISearchBoxProps) => {
+  const [searchedValue, setSearchedValue] = useState<string>("");
+
+  const searchProducts = (event: React.ChangeEvent<HTMLInputElement>) => {
+    filterProducts(event.target.value);
+    setSearchedValue(event.target.value);
+  };
+
+  const CloseSearchBox = () => {
+    closeSearchBox();
+    setSearchedValue("");
+  };
+
   return (
     <FormControl padding="5px">
       <InputGroup
@@ -27,7 +44,7 @@ export const SearchBox = ({ closeSearchBox }: ISearchBoxProps) => {
           }}
           _active={{ filter: "brightness(.8)" }}
           aria-label="supprimer"
-          onClick={closeSearchBox}
+          onClick={CloseSearchBox}
         >
           <FaSearch color={theme.colors.gray[0]} width="100%" />
         </InputRightElement>
@@ -35,6 +52,8 @@ export const SearchBox = ({ closeSearchBox }: ISearchBoxProps) => {
           type="search"
           name="title"
           placeholder="Digitar Pesquisa"
+          value={searchedValue || ""}
+          onChange={searchProducts}
           border="none"
           variant="filled"
           bg="gray.0"

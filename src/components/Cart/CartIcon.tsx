@@ -21,7 +21,7 @@ export const CartIcon = ({ amount, onClick }: IcartProps) => (
         />
         <Badge
           boxSize="7"
-          background="green.500"
+          background="green.300"
           color="white"
           borderRadius="10px"
           display="inline-flex"

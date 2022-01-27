@@ -1,9 +1,9 @@
 import { ISignInData, ISignUpData, IUser } from "../../types/User";
 import { createContext, useContext, ReactNode } from "react";
-import { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 interface IChildren {
   children: ReactNode;
@@ -17,9 +17,10 @@ interface IAuthState {
 interface IAuthContext {
   user: IUser;
   accessToken: string;
+  tokenBearer: { headers: { Authorization: string } };
   signIn(data: ISignInData): Promise<void>;
   signUp(data: ISignUpData): Promise<void>;
-  signOut(): void;
+  signOut(): Promise<void>;
 }
 
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
@@ -46,6 +47,12 @@ const AuthProvider = ({ children }: IChildren) => {
     }
 
     return {} as IAuthState;
+  });
+
+  const [tokenBearer] = useState({
+    headers: {
+      Authorization: `Bearer ${data.accessToken}`,
+    },
   });
 
   const signIn = async (data: ISignInData) => {
@@ -79,24 +86,25 @@ const AuthProvider = ({ children }: IChildren) => {
 
       history.push("/");
     } catch (error) {
-      toast.error("Email já registrado.");
+      toast.error("Email já registrado ,tente um email diferente.");
     }
   };
 
-  const signOut = useCallback(() => {
+  const signOut = async () => {
     localStorage.removeItem("@Hamburgueria:accessToken");
     localStorage.removeItem("@Hamburgueria:user");
 
     toast.warning("Usuário desconectado.");
 
     setData({} as IAuthState);
-  }, []);
+  };
 
   return (
     <AuthContext.Provider
       value={{
         accessToken: data.accessToken,
         user: data.user,
+        tokenBearer,
         signIn,
         signUp,
         signOut,

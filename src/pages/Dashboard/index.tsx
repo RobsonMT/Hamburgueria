@@ -1,12 +1,26 @@
 import { Flex } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { IProductInStock } from "../../types/Product";
 import { CardProduct } from "../../components/CardProduct";
 import { Header } from "../../components/Header";
 import { api } from "../../services/api";
-import { IProductInStock } from "../../types/Product";
 
 export const Dashboard = () => {
   const [products, setProducts] = useState<IProductInStock[]>([]);
+
+  const [filteredProducts, setFilteredProducts] = useState<IProductInStock[]>(
+    []
+  );
+
+  const filterProducts = (inputValue: string) => {
+    setFilteredProducts(
+      [...products].filter((item) => {
+        return item.name
+          .toLocaleLowerCase()
+          .includes(inputValue.toLocaleLowerCase());
+      })
+    );
+  };
 
   const loadProducts = async () => {
     const response = await api.get("/products");
@@ -17,9 +31,11 @@ export const Dashboard = () => {
     loadProducts();
   }, []);
 
+  useEffect(() => {}, []);
+
   return (
     <Flex flexDirection="column">
-      <Header />
+      <Header filterProducts={filterProducts} />
       <Flex
         flexFlow="row wrap"
         w="100%"
@@ -29,9 +45,19 @@ export const Dashboard = () => {
         paddingX={["10px", "40px"]}
         marginY="10"
       >
-        {products.map((product, index) => (
-          <CardProduct key={index} product={product} />
-        ))}
+        {filteredProducts.length > 0 ? (
+          <>
+            {filteredProducts.map((product, index) => (
+              <CardProduct key={index} product={product} />
+            ))}
+          </>
+        ) : (
+          <>
+            {products.map((product, index) => (
+              <CardProduct key={index} product={product} />
+            ))}
+          </>
+        )}
       </Flex>
     </Flex>
   );

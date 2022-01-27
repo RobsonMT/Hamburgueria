@@ -37,6 +37,7 @@ export const SignInForm = ({
       color="gray.900"
       mt={["4", "4", "0"]}
       w={["100%", "100%", "40%", "40%"]}
+      boxShadow="1.5px 1px 4px 1px rgba(194, 194, 194, 0.5)"
     >
       <Heading as="h2" size="lg">
         Login

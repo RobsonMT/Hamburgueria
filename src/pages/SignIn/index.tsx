@@ -44,7 +44,8 @@ export const SignIn = () => {
       height={["auto", "auto", "100vh", "100vh"]}
     >
       <Flex
-        w={["100%", "100%", "100%", "80%"]}
+        w={["100%", "85%", "100%", "85%"]}
+        gap={["0px","0px","10px","40px"]}
         justifyContent="center"
         flexDirection={["column", "column", "row-reverse", "row-reverse"]}
         alignItems="center"

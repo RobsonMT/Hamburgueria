@@ -43,7 +43,7 @@ export const CardProductCart = ({ product }: ICardProductCartProps) => {
               }}
               aria-label="supprimer"
               color={theme.colors.gray[100]}
-              onClick={() => deleteFromCart(product.id)}
+              onClick={() => deleteFromCart(product)}
             />
           </HStack>
 

@@ -5,7 +5,7 @@ interface ILogoProps {
 }
 
 export const Logo = ({ margin }: ILogoProps) => (
-  <Flex align="baseline" margin={margin}>
+  <Flex margin={margin} align="baseline">
     <Heading as="h1" fontWeight="700">
       Burguer
     </Heading>

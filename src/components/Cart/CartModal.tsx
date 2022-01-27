@@ -75,9 +75,7 @@ export const CartModal = ({ cart }: ICardModalProps) => {
                   <Button width="50%" onClick={clearCart}>
                     Remover todos
                   </Button>
-                  <Button width="50%" onClick={onClose}>
-                    Finalizar compra
-                  </Button>
+                  <Button width="50%">Finalizar compra</Button>
                 </Flex>
               </ModalFooter>
             </>

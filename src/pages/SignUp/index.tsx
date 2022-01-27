@@ -14,11 +14,11 @@ const signUpSchema = yup.object().shape({
     .string()
     .required("E-mail obrigatório")
     .email("Digite um email válido."),
-  password: yup.string().required("Senha obrigatória"),
-  // .matches(
-  //   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/,
-  //   "The password must include letters, numbers and a special character"
-  // ),
+  password: yup.string().required("Senha obrigatória")
+  .matches(
+    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/,
+    "The password must include letters, numbers and a special character"
+  ),
   confirm_password: yup
     .string()
     .required("Confirmação de senha obrigatória")
@@ -53,7 +53,8 @@ export const SignUp = () => {
       height={["auto", "auto", "100vh", "100vh"]}
     >
       <Flex
-        w={["100%", "100%", "100%", "80%"]}
+        w={["100%", "85%", "100%", "85%"]}
+        gap={["0px","0px","10px","40px"]}
         justifyContent="center"
         flexDirection={["column", "column", "row-reverse", "row-reverse"]}
         alignItems="center"

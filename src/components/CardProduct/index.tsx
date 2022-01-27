@@ -27,6 +27,7 @@ export const CardProduct = ({ product }: ICardProductProps) => {
       _hover={{
         borderColor: "green.300",
         transform: "scale(1.008)",
+        boxShadow: "1.5px 1px 4px 1px rgba(194, 194, 194, 0.5)",
         button: { background: "green.300" },
       }}
     >
