@@ -1,3 +1,4 @@
+import { MotionContainer } from "../../components/MotionContainer";
 import { Flex } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -6,7 +7,7 @@ import { useState } from "react";
 import { SignUpForm } from "./SignUpForm";
 import { FormInfo } from "../../components/Form/FomInfo";
 import { useAuth } from "../../contexts/Auth";
-import { ISignUpData } from "../../types/User";
+import { ISignUpData } from "../../types";
 
 const signUpSchema = yup.object().shape({
   name: yup.string().required("Nome obrigatório"),
@@ -14,11 +15,13 @@ const signUpSchema = yup.object().shape({
     .string()
     .required("E-mail obrigatório")
     .email("Digite um email válido."),
-  password: yup.string().required("Senha obrigatória")
-  .matches(
-    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/,
-    "The password must include letters, numbers and a special character"
-  ),
+  password: yup
+    .string()
+    .required("Senha obrigatória")
+    .matches(
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{6,}$/,
+      "A senha deve conter min 6 dígitos e incluir ao menos uma letra maiúscula,um número e um caractere especial"
+    ),
   confirm_password: yup
     .string()
     .required("Confirmação de senha obrigatória")
@@ -46,27 +49,29 @@ export const SignUp = () => {
   };
 
   return (
-    <Flex
-      padding={["10px 15px", "10px 15px", "0px", "0px"]}
-      alignItems="center"
-      justifyContent="center"
-      height={["auto", "auto", "100vh", "100vh"]}
-    >
+    <MotionContainer>
       <Flex
-        w={["100%", "85%", "100%", "85%"]}
-        gap={["0px","0px","10px","40px"]}
-        justifyContent="center"
-        flexDirection={["column", "column", "row-reverse", "row-reverse"]}
+        padding={["10px 15px", "10px 15px", "0px", "0px"]}
         alignItems="center"
+        justifyContent="center"
+        height={["auto", "auto", "100vh", "100vh"]}
       >
-        <FormInfo />
-        <SignUpForm
-          errors={errors}
-          handleSignUp={handleSubmit(handleSignUp)}
-          loading={loading}
-          register={register}
-        />
+        <Flex
+          w={["100%", "85%", "100%", "85%"]}
+          gap={["0px", "0px", "10px", "40px"]}
+          justifyContent="center"
+          flexDirection={["column", "column", "row", "row"]}
+          alignItems="center"
+        >
+          <FormInfo />
+          <SignUpForm
+            errors={errors}
+            handleSignUp={handleSubmit(handleSignUp)}
+            loading={loading}
+            register={register}
+          />
+        </Flex>
       </Flex>
-    </Flex>
+    </MotionContainer>
   );
 };

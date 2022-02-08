@@ -6,7 +6,8 @@ import { useState } from "react";
 import { SignInForm } from "./SignInForm";
 import { FormInfo } from "../../components/Form/FomInfo";
 import { useAuth } from "../../contexts/Auth";
-import { ISignInData } from "../../types/User";
+import { ISignInData } from "../../types";
+import { MotionContainer } from "../../components/MotionContainer";
 
 const signInSchema = yup.object().shape({
   email: yup
@@ -37,27 +38,29 @@ export const SignIn = () => {
   };
 
   return (
-    <Flex
-      padding={["10px 15px", "10px 15px", "0px", "0px"]}
-      alignItems="center"
-      justifyContent="center"
-      height={["auto", "auto", "100vh", "100vh"]}
-    >
+    <MotionContainer>
       <Flex
-        w={["100%", "85%", "100%", "85%"]}
-        gap={["0px","0px","10px","40px"]}
-        justifyContent="center"
-        flexDirection={["column", "column", "row-reverse", "row-reverse"]}
+        padding={["10px 15px", "10px 15px", "0px", "0px"]}
         alignItems="center"
+        justifyContent="center"
+        height={["auto", "auto", "100vh", "100vh"]}
       >
-        <FormInfo />
-        <SignInForm
-          errors={errors}
-          handleSignIn={handleSubmit(handleSignIn)}
-          loading={loading}
-          register={register}
-        />
+        <Flex
+          w={["100%", "85%", "100%", "85%"]}
+          gap={["0px", "0px", "10px", "40px"]}
+          justifyContent="center"
+          flexDirection={["column", "column", "row-reverse", "row-reverse"]}
+          alignItems="center"
+        >
+          <FormInfo />
+          <SignInForm
+            errors={errors}
+            handleSignIn={handleSubmit(handleSignIn)}
+            loading={loading}
+            register={register}
+          />
+        </Flex>
       </Flex>
-    </Flex>
+    </MotionContainer>
   );
 };

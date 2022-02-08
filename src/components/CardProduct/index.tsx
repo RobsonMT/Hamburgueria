@@ -1,7 +1,7 @@
 import { GridItem, Heading, Image, Text, VStack } from "@chakra-ui/react";
 import { Button, Flex } from "@chakra-ui/react";
 import { useCart } from "../../contexts/Cart";
-import { IProductInStock } from "../../types/Product";
+import { IProductInStock } from "../../types";
 import { formatPrice } from "../../utils/Format";
 
 interface ICardProductProps {

@@ -5,13 +5,7 @@ import { FaEnvelope, FaLock, FaUserAlt } from "react-icons/fa";
 import { BsShieldFillCheck } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { Input } from "../../components/Form/input";
-
-interface ISignUpData {
-  name: string;
-  email: string;
-  password: string;
-  confirm_password?: string;
-}
+import { ISignUpData } from "../../types";
 
 interface ISignUpFormProps {
   handleSignUp: () => void;
@@ -96,7 +90,7 @@ export const SignUpForm = ({
           type="submit"
           mb="1"
         >
-          Logar
+          Cadastrar
         </Button>
 
         <HStack>

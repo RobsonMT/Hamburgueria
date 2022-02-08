@@ -1,5 +1,5 @@
-import { useAuth } from "../../contexts/Auth";
 import { Box, Drawer, DrawerContent, Heading, Text } from "@chakra-ui/react";
+import { useAuth } from "../../contexts/Auth";
 import { DrawerBody, Flex, Center } from "@chakra-ui/react";
 import { DrawerOverlay, DrawerHeader } from "@chakra-ui/react";
 import { FiLogOut } from "react-icons/fi";
@@ -29,7 +29,7 @@ export const MenuLogout = ({ isOpen, onClose }: IMenuProps) => {
             {user.email}
           </Text>
         </DrawerHeader>
-        <DrawerBody>
+        <DrawerBody background={theme.colors.gray[0]}>
           <Flex align="center" onClick={signOut} _hover={{ cursor: "pointer" }}>
             <Center
               w="50px"
@@ -38,13 +38,13 @@ export const MenuLogout = ({ isOpen, onClose }: IMenuProps) => {
               fontSize="2xl"
               borderRadius="md"
             >
-              <FiLogOut color={theme.colors.white} />
+              <FiLogOut color="gray.300" />
             </Center>
             <Box ml="4">
-              <Heading as="h2" fontSize="lg">
+              <Heading as="h2" fontSize="lg" textAlign="center">
                 Sair da minha conta
               </Heading>
-              <Text color="gray.300" fontSize="small">
+              <Text color="gray.300" fontSize="small" textAlign="center">
                 sair da minha conta agora
               </Text>
             </Box>

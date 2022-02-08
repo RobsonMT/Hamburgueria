@@ -63,7 +63,7 @@ export const Header = ({ filterProducts }: IHeaderProps) => {
             </Flex>
           )}
 
-          <Flex alignItems="center" gap={["10px", "40px"]}>
+          <Flex alignItems="center" gap={["20px", "40px"]}>
             {isWideVersion ? (
               <SearchBox
                 closeSearchBox={closeSearchBox}

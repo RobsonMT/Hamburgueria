@@ -5,7 +5,7 @@ import { HStack, Modal, ModalBody, Button } from "@chakra-ui/react";
 import { CardProductCart } from "./CartProductCard";
 import { useCart } from "../../contexts/Cart";
 import { theme } from "../../styles/theme";
-import { IProduct } from "../../types/Product";
+import { IProduct } from "../../types";
 import { formatPrice } from "../../utils/Format";
 import { CartIcon } from "./CartIcon";
 
@@ -34,7 +34,10 @@ export const CartModal = ({ cart }: ICardModalProps) => {
         motionPreset="slideInBottom"
       >
         <ModalOverlay />
-        <ModalContent width={["90vw", "500px"]}>
+        <ModalContent
+          width={["90vw", "500px"]}
+          background={theme.colors.gray[0]}
+        >
           <ModalHeader background={theme.colors.green[300]} color="white">
             <Heading as="h3" fontWeight="bold" fontSize="20px">
               Carrinho de compras
@@ -69,13 +72,29 @@ export const CartModal = ({ cart }: ICardModalProps) => {
                   paddingY="20px"
                 >
                   <Text fontWeight="bold">Total</Text>
-                  <Text>{cartTotal}</Text>
+                  <Text fontWeight="bold">{cartTotal}</Text>
                 </HStack>
                 <Flex justifyContent="space-between" width="100%" gap="20px">
-                  <Button width="50%" onClick={clearCart}>
+                  <Button
+                    bg="gray.200"
+                    color="gray.0"
+                    height="35px"
+                    width="50%"
+                    _hover={{ filter: "brightness(1.1)" }}
+                    onClick={clearCart}
+                  >
                     Remover todos
                   </Button>
-                  <Button width="50%">Finalizar compra</Button>
+                  <Button
+                    bg="gray.200"
+                    color="gray.0"
+                    height="35px"
+                    width="50%"
+                    _hover={{ filter: "brightness(1.1)" }}
+                    onClick={clearCart}
+                  >
+                    Finalizar compra
+                  </Button>
                 </Flex>
               </ModalFooter>
             </>

@@ -4,11 +4,7 @@ import { FieldValues } from "react-hook-form";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import { Input } from "../../components/Form/input";
-
-interface ISignInData {
-  email: string;
-  password: string;
-}
+import { ISignInData } from "../../types";
 
 interface ISignInFormProps {
   handleSignIn: () => void;

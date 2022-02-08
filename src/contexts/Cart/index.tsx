@@ -1,4 +1,4 @@
-import { IProduct, IProductInStock } from "../../types/Product";
+import { IProduct, IProductInStock } from "../../types";
 import { createContext, ReactNode, useEffect } from "react";
 import { useContext, useState } from "react";
 import { api } from "../../services/api";
@@ -48,11 +48,11 @@ const CartProvider = ({ children }: IChildren) => {
       const newProduct = { ...product, quantity: 1, userId: user.id };
 
       await api.post("cart", newProduct, tokenBearer);
-
-      toast.success("Produto adicionado");
     } else {
       increaseAmount(productInCart[0]);
     }
+
+    toast.success("Produto adicionado");
     loadCart();
   };
 
@@ -83,6 +83,8 @@ const CartProvider = ({ children }: IChildren) => {
       );
 
       loadCart();
+    } else {
+      deleteFromCart(product);
     }
   };
 

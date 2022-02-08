@@ -1,4 +1,4 @@
-import { ISignInData, ISignUpData, IUser } from "../../types/User";
+import { ISignInData, ISignUpData, IUser } from "../../types";
 import { createContext, useContext, ReactNode } from "react";
 import { useHistory } from "react-router-dom";
 import { api } from "../../services/api";

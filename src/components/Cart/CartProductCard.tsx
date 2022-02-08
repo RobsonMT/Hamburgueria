@@ -4,7 +4,7 @@ import { RiSubtractFill } from "react-icons/ri";
 import { IoMdTrash } from "react-icons/io";
 import { MdAdd } from "react-icons/md";
 import { theme } from "../../styles/theme";
-import { IProduct } from "../../types/Product";
+import { IProduct } from "../../types";
 import { useCart } from "../../contexts/Cart";
 
 interface ICardProductCartProps {
