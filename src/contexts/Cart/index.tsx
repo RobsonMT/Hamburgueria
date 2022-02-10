@@ -97,10 +97,7 @@ const CartProvider = ({ children }: IChildren) => {
 
   const clearCart = () => {
     cart.forEach((product) => {
-      setTimeout(() => {
-        api.delete(`/cart/${product.id}`, tokenBearer);
-        loadCart();
-      }, 500);
+      deleteFromCart(product);
     });
 
     toast.warning("Seu carrinho está vazio!");

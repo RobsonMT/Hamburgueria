@@ -7,7 +7,7 @@ export const App = () => (
     <ToastContainer
       position="top-right"
       theme="colored"
-      autoClose={2200}
+      autoClose={2000}
       hideProgressBar={false}
       newestOnTop={false}
       closeOnClick
