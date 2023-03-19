@@ -1,3 +1,4 @@
+import React from "react";
 import { Heading, Text, useBreakpointValue } from "@chakra-ui/react";
 import { Flex, IconButton, useDisclosure } from "@chakra-ui/react";
 import { FaSearch, FaSignOutAlt, FaStore } from "react-icons/fa";
