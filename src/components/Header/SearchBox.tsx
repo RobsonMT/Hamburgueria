@@ -1,3 +1,4 @@
+import React from "react";
 import { FormControl, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";

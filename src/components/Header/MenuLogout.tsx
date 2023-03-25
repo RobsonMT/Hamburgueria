@@ -1,3 +1,4 @@
+import React from "react";
 import { Box, Drawer, DrawerContent, Heading, Text } from "@chakra-ui/react";
 import { useAuth } from "../../contexts/Auth";
 import { DrawerBody, Flex, Center } from "@chakra-ui/react";

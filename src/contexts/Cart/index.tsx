@@ -1,3 +1,4 @@
+import React from "react";
 import { IProduct, IProductInStock } from "../../types";
 import { createContext, ReactNode, useEffect } from "react";
 import { useContext, useState } from "react";
